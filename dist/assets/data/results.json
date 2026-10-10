@@ -67,14 +67,6 @@
       "embodied_pretraining_in_this_table": null
     },
     {
-      "method": "MotuBrain",
-      "clean": 95.8,
-      "randomized": 96.08,
-      "average": 95.94,
-      "closed_source": true,
-      "embodied_pretraining_in_this_table": null
-    },
-    {
       "method": "Fast-WAM",
       "clean": 91.9,
       "randomized": 91.8,
