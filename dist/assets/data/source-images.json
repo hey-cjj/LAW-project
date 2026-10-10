@@ -1,0 +1,26 @@
+{
+  "source": "Overleaf Git project",
+  "commit": "fef01d41d41f71ed0fe6c08007f40aba8f3b3645",
+  "images": [
+    {
+      "file": "figures/Teaser.png",
+      "sha256": "af44b400c8b59892caee55ce49cc31cf7ce5e6d749f81028185750d9a75f6e20"
+    },
+    {
+      "file": "figures/LAW_main.png",
+      "sha256": "1f21b5658435845f9e2d8a0ee88f3415e285236753f09661915d699adfe36991"
+    },
+    {
+      "file": "figures/memory.png",
+      "sha256": "0a1c3b290d1876257b434d3246fff7a9f95f39d40f52f6b576e4ee6d1882fd10"
+    },
+    {
+      "file": "figures/moe.pdf",
+      "sha256": "6f03707b5064cee604595b433d3c96352b3f036a09be23e68ab087cdc0eb89f2"
+    },
+    {
+      "file": "figures/Mixed-Frequency.pdf",
+      "sha256": "8f9127e630b20d2674e4d0292e87d308fab9e42caed4a315193554e6c38b85b5"
+    }
+  ]
+}
