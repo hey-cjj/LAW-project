@@ -1,0 +1,145 @@
+{
+  "version": 1,
+  "videos": [
+    {
+      "task": "domino",
+      "semantic_stages": 5,
+      "poster": "assets/images/domino-poster.jpg",
+      "highlight": {
+        "path": "assets/videos/domino-highlight.mp4",
+        "duration_s": 30.625,
+        "width": 960,
+        "height": 540,
+        "fps": 24,
+        "speed": 6,
+        "bytes": 1554844,
+        "edited": true
+      },
+      "full": {
+        "path": "assets/videos/domino-full.mp4",
+        "duration_s": 221.8,
+        "width": 960,
+        "height": 540,
+        "fps": 30,
+        "speed": 1,
+        "bytes": 5907968,
+        "edited": false
+      },
+      "highlightSpeed": 6,
+      "cut_ranges_s": [
+        [
+          20,
+          100
+        ],
+        [
+          116,
+          193
+        ],
+        [
+          195,
+          221.8
+        ]
+      ]
+    },
+    {
+      "task": "puzzle",
+      "semantic_stages": 3,
+      "poster": "assets/images/puzzle-poster.jpg",
+      "highlight": {
+        "path": "assets/videos/puzzle-highlight.mp4",
+        "duration_s": 20.417,
+        "width": 960,
+        "height": 540,
+        "fps": 24,
+        "speed": 4,
+        "bytes": 756238,
+        "edited": true
+      },
+      "full": {
+        "path": "assets/videos/puzzle-full.mp4",
+        "duration_s": 96.7,
+        "width": 960,
+        "height": 540,
+        "fps": 30,
+        "speed": 1,
+        "bytes": 1949674,
+        "edited": false
+      },
+      "highlightSpeed": 4,
+      "cut_ranges_s": [
+        [
+          3,
+          57
+        ],
+        [
+          69,
+          96.7
+        ]
+      ]
+    },
+    {
+      "task": "organize",
+      "semantic_stages": 9,
+      "poster": "assets/images/organize-poster.jpg",
+      "highlight": {
+        "path": "assets/videos/organize-highlight.mp4",
+        "duration_s": 33.5,
+        "width": 960,
+        "height": 540,
+        "fps": 24,
+        "speed": 6,
+        "bytes": 1529997,
+        "edited": true
+      },
+      "full": {
+        "path": "assets/videos/organize-full.mp4",
+        "duration_s": 349.934,
+        "width": 960,
+        "height": 540,
+        "fps": 30,
+        "speed": 1,
+        "bytes": 7475707,
+        "edited": false
+      },
+      "highlightSpeed": 6,
+      "cut_ranges_s": [
+        [
+          17,
+          32
+        ],
+        [
+          53,
+          85
+        ],
+        [
+          98,
+          111
+        ],
+        [
+          123,
+          140
+        ],
+        [
+          153,
+          185
+        ],
+        [
+          208,
+          225
+        ],
+        [
+          241,
+          258
+        ],
+        [
+          274,
+          311
+        ],
+        [
+          329,
+          349.934
+        ]
+      ]
+    }
+  ]
+}

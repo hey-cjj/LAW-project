@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="LAW unifies language, action, and world modeling in a progress-aware agent for long-horizon robot manipulation. Explore the method, real-robot demonstrations, and results.">
+  <meta name="theme-color" content="#f8f7f3">
+  <meta property="og:title" content="LAW: Agentic Physical Intelligence">
+  <meta property="og:description" content="Language, action, and world modeling — coordinated through semantic progress.">
+  <meta property="og:type" content="website">
+  <title>LAW — Language, Action, and World Modeling</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preload" href="assets/fonts/instrument-serif-regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="assets/fonts/dm-sans-regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container nav-row">
+      <a class="wordmark" href="#" aria-label="LAW home">LA<span>W</span><span class="wordmark-dot">.</span></a>
+      <nav aria-label="Main navigation">
+        <a href="#demonstrations">Demos</a><a href="#method">Method</a><a href="#results">Results</a>
+        <a class="nav-paper" href="assets/paper/LAW.pdf" target="_blank" rel="noopener">Read the paper <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero container" aria-labelledby="paper-title">
+      <p class="eyebrow">LAW · LANGUAGE / ACTION / WORLD MODELING</p>
+      <h1 id="paper-title">Unifying Language, Action, and World Modeling <em>for Agentic Physical Intelligence.</em></h1>
+      <p class="hero-description">A progress-aware agent that plans meaningful subtasks, selects actions,<br class="desktop-break"> and monitors execution to complete long-horizon robot tasks.</p>
+      <div class="hero-resources">
+        <a class="button button-primary" href="assets/paper/LAW.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 2.5h7l3 3V17.5H5zM12 2.5v4h3M8 10h4M8 13h4"/></svg>Paper <span aria-hidden="true">↗</span></a>
+        <a class="button button-secondary" href="https://github.com/hey-cjj/CogWAM" target="_blank" rel="noopener"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6.5 5-5 5 5 5m7-10 5 5-5 5m-2-12-3 14"/></svg>Code <span class="release-label">release planned</span><span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+
+    <section class="demonstrations container" id="demonstrations" aria-labelledby="demos-title">
+      <div class="section-overline"><h2 id="demos-title">Long-horizon manipulation, in the real world</h2><span>REAL ROBOT · LAW ROLLOUTS</span></div>
+      <div class="demo-grid">
+        <article class="demo">
+          <div class="video-wrap"><video id="puzzle-highlight" controls playsinline muted loop preload="none" poster="assets/images/puzzle-poster.jpg" aria-label="LAW Puzzle selected rollout excerpts, four times original speed"><source src="assets/videos/puzzle-highlight.mp4" type="video/mp4"><a href="assets/videos/puzzle-highlight.mp4">Download Puzzle video</a></video><span class="video-speed">4× · excerpts</span></div>
+          <div class="task-title"><h3>Puzzle</h3><span>3 subtasks</span></div>
+          <p>Insert three colored pieces into their matching recesses.</p>
+          <button class="text-button full-video" data-task="puzzle" data-title="Puzzle" aria-haspopup="dialog">Watch full rollout <span aria-hidden="true">↗</span></button>
+        </article>
+        <article class="demo">
+          <div class="video-wrap"><video id="domino-highlight" controls playsinline muted loop preload="none" poster="assets/images/domino-poster.jpg" aria-label="LAW Domino selected rollout excerpts, six times original speed"><source src="assets/videos/domino-highlight.mp4" type="video/mp4"><a href="assets/videos/domino-highlight.mp4">Download Domino video</a></video><span class="video-speed">6× · excerpts</span></div>
+          <div class="task-title"><h3>Domino</h3><span>5 subtasks</span></div>
+          <p>Stand four dominoes in a row, then initiate their toppling.</p>
+          <button class="text-button full-video" data-task="domino" data-title="Domino" aria-haspopup="dialog">Watch full rollout <span aria-hidden="true">↗</span></button>
+        </article>
+        <article class="demo">
+          <div class="video-wrap"><video id="organize-highlight" controls playsinline muted loop preload="none" poster="assets/images/organize-poster.jpg" aria-label="LAW Organize selected rollout excerpts, six times original speed"><source src="assets/videos/organize-highlight.mp4" type="video/mp4"><a href="assets/videos/organize-highlight.mp4">Download Organize video</a></video><span class="video-speed">6× · excerpts</span></div>
+          <div class="task-title"><h3>Organize</h3><span>9 subtasks</span></div>
+          <p>Sort three colored blocks into matching drawers and close each drawer.</p>
+          <button class="text-button full-video" data-task="organize" data-title="Organize" aria-haspopup="dialog">Watch full rollout <span aria-hidden="true">↗</span></button>
+        </article>
+      </div>
+      <p class="media-note">Selected excerpts from successful LAW executions. Cuts and playback speeds are disclosed; complete, uncut videos are available at 1×.</p>
+    </section>
+
+    <section class="evidence container" aria-label="Headline results">
+      <div><strong>94.21<span>%</span></strong><p>RoboTwin average success</p><small>LAW + Fast-WAM · 50 tasks</small></div>
+      <div><strong>65<span>%</span></strong><p>Real-world average success</p><small>Puzzle · Domino · Organize</small></div>
+      <div><strong>2<span>B</span></strong><p>Shared VLM backbone</p><small>Planner · State · Value experts</small></div>
+    </section>
+
+    <section class="method section container" id="method" aria-labelledby="method-title">
+      <div class="section-heading"><p class="eyebrow">01 / THE METHOD</p><h2 id="method-title">An agent that knows<br><em>what comes next.</em></h2><p>Motor commands alone do not describe progress. LAW gives planning, action generation, and evaluation a common objective: the active semantic subtask.</p></div>
+      <figure class="framework figure-surface">
+        <button class="image-zoom" data-image="assets/images/framework.png" data-caption="The LAW framework: a hybrid-expert VLM, MoTE world-action model, and progress-aware closed-loop agent." aria-label="Enlarge LAW framework diagram" aria-haspopup="dialog"><img src="assets/images/framework.png" width="3439" height="1882" loading="lazy" alt="LAW architecture. Planner, state, and value adapters share a frozen VLM. MoTE combines private and shared video-action experts. The agent proposes actions, ranks and fuses them, executes a prefix, and monitors subtask completion asynchronously."><span class="zoom-hint">View full figure <span aria-hidden="true">↗</span></span></button>
+        <figcaption>The final paper framework. Video prediction is a joint training objective; the default LAW agent does not explicitly generate future images at inference.</figcaption>
+      </figure>
+      <div class="loop-strip" aria-label="Agent execution cycle">
+        <div><span>01</span><h3>Plan</h3><p>Predict the remaining semantic subtasks.</p></div>
+        <div><span>02</span><h3>Propose</h3><p>Generate 32 diverse action chunks.</p></div>
+        <div><span>03</span><h3>Select</h3><p>Score candidates and fuse the top eight.</p></div>
+        <div><span>04</span><h3>Execute</h3><p>Execute a prefix of the fused action.</p></div>
+        <div><span>05</span><h3>Monitor</h3><p>Assess completion asynchronously; continue or advance.</p></div>
+      </div>
+      <div class="method-details">
+        <article><div class="detail-index">A</div><h3>Shared dynamics.<br>Specialized experts.</h3><p>MoTE places shared and modality-specific experts after joint video–action attention. Shared computation captures common physical structure, while private experts preserve each modality’s distinct features.</p></article>
+        <article><div class="detail-index">B</div><h3>Persistent context.<br>At the right detail.</h3><div class="memory-key"><span><i class="memory-short"></i>Recent</span><span><i class="memory-node"></i>Boundary</span><span><i class="memory-long"></i>Long-term</span></div><p>Recent observations and subtask-boundary states retain spatial detail. Older history is compressed. The VLM and WAM use aligned timestamps in their own native token spaces.</p><button class="text-button" data-image="assets/images/memory.png" data-caption="Dual-stream hierarchical memory retains recent observations and semantic boundary states at full spatial detail, with compressed older context." aria-haspopup="dialog">Explore memory <span aria-hidden="true">↗</span></button></article>
+        <article><div class="detail-index">C</div><h3>Useful supervision.<br>Even from failed episodes.</h3><p>Subtask-local value learning preserves credit for completed stages. A successful subtask receives terminal reward 1; returns stop at semantic boundaries rather than inheriting the outcome of the entire episode.</p><button class="text-button" data-image="assets/images/subtask-learning.png" data-caption="Semantic subtask annotations, completion labels, and failure cases from the final paper." aria-haspopup="dialog">View subtask supervision <span aria-hidden="true">↗</span></button></article>
+      </div>
+    </section>
+
+    <section class="results section" id="results" aria-labelledby="results-title">
+      <div class="container">
+        <div class="section-heading"><p class="eyebrow">02 / IN SIMULATION</p><h2 id="results-title">Strong performance.<br><em>Across changing scenes.</em></h2><p>RoboTwin evaluates 50 bimanual manipulation tasks in clean and randomized environments. The comparison below reports the paper’s main-table results.</p></div>
+        <div class="robotwin-layout">
+          <div class="benchmark-summary"><span class="small-label">ROBOTWIN · LAW + FAST-WAM</span><div class="large-result">94.21<span>%</span></div><p>Average complete-task success,<br>without robot-data pretraining.</p><a class="text-link" href="assets/paper/LAW.pdf" target="_blank" rel="noopener">Evaluation details in the paper <span aria-hidden="true">↗</span></a></div>
+          <div class="benchmark-chart">
+            <div class="chart-heading"><h3>Success rate <span>(%)</span></h3><div class="segmented" role="group" aria-label="RoboTwin evaluation setting"><button class="active" data-setting="average_reported" aria-pressed="true">Average</button><button data-setting="clean" aria-pressed="false">Clean</button><button data-setting="randomized" aria-pressed="false">Randomized</button></div></div>
+            <div id="robotwin-bars" class="horizontal-bars" aria-live="polite">
+              <div class="bar-row"><span>Fast-WAM</span><div class="bar-track"><i style="width:91.8%"></i></div><strong>91.8</strong></div>
+              <div class="bar-row"><span>LingBot-VA 2.0</span><div class="bar-track"><i style="width:93.6%"></i></div><strong>93.6</strong></div>
+              <div class="bar-row law"><span>LAW + Fast-WAM</span><div class="bar-track"><i style="width:94.21%"></i></div><strong>94.21</strong></div>
+            </div>
+            <div class="chart-axis" aria-hidden="true"><span>0</span><span>50</span><span>100</span></div>
+          </div>
+        </div>
+        <details class="results-detail"><summary>View the complete RoboTwin comparison <span aria-hidden="true">+</span></summary><div class="table-scroll"><table><caption>RoboTwin main comparison · Table 2 in the manuscript</caption><thead><tr><th scope="col">Method</th><th scope="col">Robot-data pretraining</th><th scope="col">Clean (%)</th><th scope="col">Randomized (%)</th><th scope="col">Average (%)</th></tr></thead><tbody>
+          <tr><th scope="row">X-VLA</th><td>Yes</td><td>72.9</td><td>72.8</td><td>72.9</td></tr>
+          <tr><th scope="row">π₀.₅</th><td>Yes</td><td>82.7</td><td>76.8</td><td>79.8</td></tr>
+          <tr><th scope="row">Qwen-RobotManip</th><td>Yes</td><td>93.4</td><td>92.5</td><td>93.0</td></tr>
+          <tr><th scope="row">Motus</th><td>Yes</td><td>88.7</td><td>87.0</td><td>87.9</td></tr>
+          <tr><th scope="row">Fast-WAM</th><td>No</td><td>91.9</td><td>91.8</td><td>91.8</td></tr>
+          <tr><th scope="row">LingBot-VA</th><td>Yes</td><td>92.9</td><td>91.5</td><td>92.2</td></tr>
+          <tr><th scope="row">LingBot-VA 2.0</th><td>Yes</td><td>93.8</td><td>93.4</td><td>93.6</td></tr>
+          <tr class="law"><th scope="row">LAW + Fast-WAM</th><td>No</td><td>94.22</td><td>94.20</td><td>94.21</td></tr>
+        </tbody></table></div></details>
+        <div class="backbone-note"><div><span class="small-label">A FRAMEWORK THAT EXTENDS TO OTHER BACKBONES</span><h3>With OpenWAM-α, LAW reaches <em>95.56%.</em></h3><p>Average RoboTwin success increases from 93.60% for OpenWAM-α to 95.56% with LAW. This is a separate backbone comparison, distinct from the default Fast-WAM configuration.</p></div><div class="backbone-pair"><div><span>OpenWAM-α</span><strong>93.60<small>%</small></strong></div><span class="pair-arrow" aria-hidden="true">→</span><div class="law"><span>LAW + OpenWAM-α</span><strong>95.56<small>%</small></strong></div></div></div>
+      </div>
+    </section>
+
+    <section class="real-results section container" id="real-world" aria-labelledby="real-results-title">
+      <div class="section-heading"><p class="eyebrow">03 / ON THE REAL ROBOT</p><h2 id="real-results-title">Completing the task.<br><em>Across all its stages.</em></h2><p>Three tasks test sequential reasoning, precise alignment, and changing object states on a bimanual AgileX Cobot Magic setup. Each task uses 300 teleoperated training trajectories.</p></div>
+      <div class="real-chart-top"><div class="legend"><span><i class="legend-law"></i>LAW</span><span><i class="legend-pi"></i>π₀.₅</span><span><i class="legend-fast"></i>Fast-WAM</span></div><div class="segmented" role="group" aria-label="Real-world metric"><button class="active" data-metric="success_rate" aria-pressed="true">Success rate</button><button data-metric="task_score" aria-pressed="false">Task score</button></div></div>
+      <div class="real-chart" id="real-chart" role="img" aria-label="Real-world complete-task success rates. LAW: Puzzle 60, Domino 70, Organize 65, mean 65 percent. π0.5: 20, 40, 25, mean 28.33. Fast-WAM: 15, 20, 40, mean 25.">
+        <div class="vertical-axis" aria-hidden="true"><span>100</span><span>50</span><span>0</span></div><div class="chart-plot">
+          <div class="plot-grid" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="bar-group" data-group="0"><div class="columns"><div class="column col-law" style="height:60%"><span>60</span></div><div class="column col-pi" style="height:20%"><span>20</span></div><div class="column col-fast" style="height:15%"><span>15</span></div></div><div class="group-label">Puzzle <small>3 subtasks</small></div></div>
+          <div class="bar-group" data-group="1"><div class="columns"><div class="column col-law" style="height:70%"><span>70</span></div><div class="column col-pi" style="height:40%"><span>40</span></div><div class="column col-fast" style="height:20%"><span>20</span></div></div><div class="group-label">Domino <small>5 subtasks</small></div></div>
+          <div class="bar-group" data-group="2"><div class="columns"><div class="column col-law" style="height:65%"><span>65</span></div><div class="column col-pi" style="height:25%"><span>25</span></div><div class="column col-fast" style="height:40%"><span>40</span></div></div><div class="group-label">Organize <small>9 subtasks</small></div></div>
+          <div class="bar-group mean-group" data-group="3"><div class="columns"><div class="column col-law" style="height:65%"><span>65</span></div><div class="column col-pi" style="height:28.33%"><span>28.33</span></div><div class="column col-fast" style="height:25%"><span>25</span></div></div><div class="group-label">Average <small>across three tasks</small></div></div>
+        </div>
+      </div>
+      <p class="chart-note" id="metric-note" aria-live="polite">Success rate (%) measures episodes that complete the entire task. Task score (0–100) measures the fraction of semantic stages completed.</p>
+      <details class="results-detail"><summary>View exact per-task results <span aria-hidden="true">+</span></summary><div class="table-scroll"><table id="real-results-table"><caption>Complete-task success rate (%)</caption><thead><tr><th scope="col">Method</th><th scope="col">Puzzle</th><th scope="col">Domino</th><th scope="col">Organize</th><th scope="col">Average</th></tr></thead><tbody><tr class="law"><th scope="row">LAW</th><td>60</td><td>70</td><td>65</td><td>65</td></tr><tr><th scope="row">π₀.₅</th><td>20</td><td>40</td><td>25</td><td>28.33</td></tr><tr><th scope="row">Fast-WAM</th><td>15</td><td>20</td><td>40</td><td>25</td></tr></tbody></table></div></details>
+      <figure class="real-figure figure-surface"><button class="image-zoom" data-image="assets/images/real-world-results.png" data-caption="Representative real-robot executions and the exact success-rate and task-score results from the manuscript." aria-label="Enlarge the paper's real-world result figure" aria-haspopup="dialog"><img src="assets/images/real-world-results.png" width="2200" height="1822" loading="lazy" alt="Final paper real-world figure: Puzzle, Domino, and Organize semantic execution sequences, complete-task success rates, and normalized task scores."><span class="zoom-hint">Paper figure <span aria-hidden="true">↗</span></span></button></figure>
+    </section>
+
+    <section class="semantic section" aria-labelledby="semantic-title">
+      <div class="container">
+        <div class="section-heading"><p class="eyebrow">04 / SEMANTIC PROGRESS</p><h2 id="semantic-title">Long tasks.<br><em>Meaningful steps.</em></h2><p>Subtasks connect language to physical changes: open a drawer, place a block, close the drawer. The same progress representation spans simulated and real environments.</p></div>
+        <div class="semantic-top"><div class="segmented" role="group" aria-label="Semantic decomposition benchmark"><button class="active" data-example="robotwin" aria-pressed="true">RoboTwin</button><button data-example="robodojo" aria-pressed="false">RoboDojo</button></div><p id="example-description">Semantic boundaries and subtask descriptions in RoboTwin demonstrations.</p></div>
+        <figure class="figure-surface semantic-figure"><button id="semantic-zoom" class="image-zoom" data-image="assets/images/robotwin-subtasks.jpg" data-caption="RoboTwin demonstrations decomposed into semantic subtasks." aria-label="Enlarge semantic subtask examples" aria-haspopup="dialog"><img id="semantic-image" src="assets/images/robotwin-subtasks.jpg" width="2300" height="1116" loading="lazy" alt="RoboTwin simulator demonstration frames arranged as sequences, annotated with semantic subtask descriptions and task boundaries."><span class="zoom-hint">View examples <span aria-hidden="true">↗</span></span></button></figure>
+        <p class="semantic-note">RoboDojo additionally examines generalization, precision, long-horizon behavior, memory, and open skills. The manuscript discusses these complementary capability dimensions.</p>
+      </div>
+    </section>
+
+    <section class="abstract section container" aria-labelledby="abstract-title">
+      <div><p class="eyebrow">THE RESEARCH</p><h2 id="abstract-title">Language, action,<br><em>and a persistent world.</em></h2></div>
+      <div class="abstract-copy"><p>Long-horizon robot tasks require more than accurate motor commands: an agent must plan meaningful subtasks, recognize when they are complete, and select actions that advance the current objective.</p><p>LAW coordinates a hybrid-expert vision-language model with a world-action model through semantic subtask progress. Specialized planner, state, and value experts share a frozen VLM backbone. MoTE strengthens joint video–action modeling, while dual-stream hierarchical memory retains recent observations, semantic boundary states, and compressed history. Subtask-local value learning preserves useful supervision from successful stages of failed trajectories.</p><p>The resulting framework achieves 94.21% average success on 50 RoboTwin tasks, rising to 95.56% with an OpenWAM-α backbone, and 65% average success on three long-horizon real-robot tasks.</p><div class="abstract-resources"><a class="button button-primary" href="assets/paper/LAW.pdf" target="_blank" rel="noopener">Read the manuscript <span aria-hidden="true">↗</span></a><a class="text-link" href="https://github.com/hey-cjj/CogWAM" target="_blank" rel="noopener">Code repository <span aria-hidden="true">↗</span></a></div></div>
+    </section>
+  </main>
+  <footer class="site-footer container"><a class="wordmark" href="#" aria-label="Back to LAW home">LA<span>W</span><span class="wordmark-dot">.</span></a><p>LAW · Unifying Language, Action, and World Modeling</p><a href="#main">Back to top <span aria-hidden="true">↑</span></a></footer>
+
+  <dialog id="media-dialog" class="media-dialog" aria-labelledby="dialog-title"><div class="dialog-top"><h2 id="dialog-title">LAW</h2><button class="dialog-close" aria-label="Close viewer">Close <span aria-hidden="true">×</span></button></div><div id="dialog-content"></div><p id="dialog-caption"></p></dialog>
+  <div id="media-status" class="media-status" role="status" aria-live="polite"></div>
+</body>
+</html>

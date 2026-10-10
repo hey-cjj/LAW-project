@@ -1,0 +1,193 @@
+{
+  "title": "LAW: Unifying Language, Action, and World Modeling for Agentic Physical Intelligence",
+  "robotwin": [
+    {
+      "method": "X-VLA",
+      "embodied_pretraining": true,
+      "clean": 72.9,
+      "randomized": 72.8,
+      "average_reported": 72.9
+    },
+    {
+      "method": "π₀.₅",
+      "embodied_pretraining": true,
+      "clean": 82.7,
+      "randomized": 76.8,
+      "average_reported": 79.8
+    },
+    {
+      "method": "Qwen-RobotManip",
+      "embodied_pretraining": true,
+      "clean": 93.4,
+      "randomized": 92.5,
+      "average_reported": 93.0
+    },
+    {
+      "method": "Motus",
+      "embodied_pretraining": true,
+      "clean": 88.7,
+      "randomized": 87.0,
+      "average_reported": 87.9
+    },
+    {
+      "method": "Fast-WAM",
+      "embodied_pretraining": false,
+      "clean": 91.9,
+      "randomized": 91.8,
+      "average_reported": 91.8
+    },
+    {
+      "method": "LingBot-VA",
+      "embodied_pretraining": true,
+      "clean": 92.9,
+      "randomized": 91.5,
+      "average_reported": 92.2
+    },
+    {
+      "method": "LingBot-VA 2.0",
+      "embodied_pretraining": true,
+      "clean": 93.8,
+      "randomized": 93.4,
+      "average_reported": 93.6
+    },
+    {
+      "method": "LAW + Fast-WAM",
+      "embodied_pretraining": false,
+      "clean": 94.22,
+      "randomized": 94.2,
+      "average_reported": 94.21
+    }
+  ],
+  "backbones": [
+    {
+      "method": "Flex-π",
+      "clean": 94.3,
+      "randomized": 94.8,
+      "average": 94.6,
+      "embodied_pretraining_in_this_table": null
+    },
+    {
+      "method": "MotuBrain",
+      "clean": 95.8,
+      "randomized": 96.08,
+      "average": 95.94,
+      "closed_source": true,
+      "embodied_pretraining_in_this_table": null
+    },
+    {
+      "method": "Fast-WAM",
+      "clean": 91.9,
+      "randomized": 91.8,
+      "average": 91.85,
+      "embodied_pretraining_in_this_table": null
+    },
+    {
+      "method": "LAW + Fast-WAM",
+      "clean": 94.22,
+      "randomized": 94.2,
+      "average": 94.21,
+      "embodied_pretraining_in_this_table": null
+    },
+    {
+      "method": "OpenWAM-α",
+      "clean": 93.74,
+      "randomized": 93.46,
+      "average": 93.6,
+      "embodied_pretraining_in_this_table": null
+    },
+    {
+      "method": "LAW + OpenWAM-α",
+      "clean": 95.6,
+      "randomized": 95.52,
+      "average": 95.56,
+      "embodied_pretraining_in_this_table": null
+    }
+  ],
+  "realWorld": {
+    "methods": [
+      "LAW",
+      "π₀.₅",
+      "Fast-WAM"
+    ],
+    "tasks": [
+      {
+        "name": "Puzzle",
+        "stages": 3,
+        "description": "Insert three colored pieces into their matching recesses.",
+        "success_rate": [
+          60,
+          20,
+          15
+        ],
+        "task_score": [
+          86.64,
+          54.97,
+          46.64
+        ],
+        "subtasks": [
+          "Insert the first piece",
+          "Insert the second piece",
+          "Insert the third piece"
+        ]
+      },
+      {
+        "name": "Domino",
+        "stages": 5,
+        "description": "Stand four dominoes in a row, then initiate their toppling.",
+        "success_rate": [
+          70,
+          40,
+          20
+        ],
+        "task_score": [
+          80.0,
+          56.0,
+          39.0
+        ],
+        "subtasks": [
+          "Stand domino 1",
+          "Stand domino 2",
+          "Stand domino 3",
+          "Stand domino 4",
+          "Topple the row"
+        ]
+      },
+      {
+        "name": "Organize",
+        "stages": 9,
+        "description": "Sort three colored blocks into matching drawers and close each drawer.",
+        "success_rate": [
+          65,
+          25,
+          40
+        ],
+        "task_score": [
+          85.54,
+          55.53,
+          69.97
+        ],
+        "subtasks": [
+          "Open drawer 1",
+          "Place block 1",
+          "Close drawer 1",
+          "Open drawer 2",
+          "Place block 2",
+          "Close drawer 2",
+          "Open drawer 3",
+          "Place block 3",
+          "Close drawer 3"
+        ]
+      }
+    ],
+    "meanSuccess": [
+      65,
+      28.33,
+      25
+    ],
+    "meanScore": [
+      84.06,
+      55.5,
+      51.87
+    ]
+  }
+}
