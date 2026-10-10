@@ -38,7 +38,7 @@ for url in re.findall(r'url\([\'\"]?([^\)\'\"]+)', (root/'styles.css').read_text
     if not (root/url).is_file():
         errors.append(f'missing CSS resource: {url}')
 for video in doc.videos:
-    if 'controls' not in video or 'playsinline' not in video:
+    if video.get('aria-hidden') != 'true' and ('controls' not in video or 'playsinline' not in video):
         errors.append(f'video missing accessible native controls: {video.get("id")}')
 
 data = json.loads((root/'assets/data/results.json').read_text())

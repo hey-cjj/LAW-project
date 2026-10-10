@@ -5,7 +5,6 @@ const dialogContent = document.querySelector('#dialog-content');
 const dialogTitle = document.querySelector('#dialog-title');
 const dialogCaption = document.querySelector('#dialog-caption');
 let lastFocused = null;
-let results = null;
 
 function pauseVideos(except = null) {
   document.querySelectorAll('video').forEach(video => { if (video !== except) video.pause(); });
@@ -110,81 +109,34 @@ dialog.addEventListener('close', () => {
   document.body.classList.remove('dialog-open');
   lastFocused?.focus();
 });
-document.addEventListener('visibilitychange', () => { if (document.hidden) pauseVideos(); });
 
-function activate(button, selector) {
-  document.querySelectorAll(selector).forEach(item => {
-    const selected = item === button;
-    item.classList.toggle('active', selected);
-    item.setAttribute('aria-pressed', String(selected));
+
+// Decorative background clips play together, independently of demo controls.
+const heroVideos = [...document.querySelectorAll('.hero-video')];
+const heroPlayback = document.querySelector('.hero-playback');
+let heroPaused = matchMedia('(prefers-reduced-motion: reduce)').matches;
+let heroVisible = true;
+function syncHeroPlayback() {
+  const foregroundPlaying = [...document.querySelectorAll('video:not(.hero-video)')].some(video => !video.paused);
+  const play = !heroPaused && heroVisible && !document.hidden && !dialog.open && !foregroundPlaying;
+  heroVideos.forEach(video => {
+    video.muted = true;
+    if (play) video.play().catch(() => {});
+    else video.pause();
   });
+  heroPlayback.textContent = heroPaused ? 'Play ▶' : 'Pause ❚❚';
+  heroPlayback.setAttribute('aria-label', heroPaused ? 'Play background videos' : 'Pause background videos');
+  heroPlayback.setAttribute('aria-pressed', String(heroPaused));
 }
-
-document.querySelectorAll('[data-setting]').forEach(button => {
-  button.addEventListener('click', () => {
-    if (!results) return notify('Results are still loading. Please try again.');
-    activate(button, '[data-setting]');
-    const setting = button.dataset.setting;
-    const methods = ['Fast-WAM', 'LingBot-VA 2.0', 'LAW + Fast-WAM'];
-    document.querySelectorAll('#robotwin-bars .bar-row').forEach((row, index) => {
-      const record = results.robotwin.find(item => item.method === methods[index]);
-      const value = record[setting];
-      row.querySelector('i').style.width = `${value}%`;
-      row.querySelector('strong').textContent = index === 2 ? Number(value).toFixed(2) : Number(value).toFixed(1);
-    });
-  });
+heroPlayback.addEventListener('click', () => { heroPaused = !heroPaused; syncHeroPlayback(); });
+new IntersectionObserver(([entry]) => { heroVisible = entry.isIntersecting; syncHeroPlayback(); }).observe(document.querySelector('.hero'));
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) pauseVideos();
+  syncHeroPlayback();
 });
-
-document.querySelectorAll('[data-metric]').forEach(button => {
-  button.addEventListener('click', () => {
-    if (!results) return notify('Results are still loading. Please try again.');
-    activate(button, '[data-metric]');
-    const metric = button.dataset.metric;
-    const real = results.realWorld;
-    const values = [...real.tasks.map(task => task[metric]), metric === 'success_rate' ? real.meanSuccess : real.meanScore];
-    const format = value => metric === 'task_score' ? Number(value).toFixed(2) : String(value);
-    document.querySelectorAll('.bar-group').forEach((group, groupIndex) => {
-      group.querySelectorAll('.column').forEach((column, methodIndex) => {
-        const value = values[groupIndex][methodIndex];
-        column.style.height = `${value}%`;
-        column.querySelector('span').textContent = format(value);
-      });
-    });
-    const title = metric === 'success_rate' ? 'Complete-task success rate (%)' : 'Task score (0–100)';
-    const table = document.querySelector('#real-results-table');
-    table.querySelector('caption').textContent = title;
-    table.querySelectorAll('tbody tr').forEach((row, methodIndex) => {
-      row.querySelectorAll('td').forEach((cell, taskIndex) => { cell.textContent = format(values[taskIndex][methodIndex]); });
-    });
-    document.querySelector('#real-chart').setAttribute('aria-label', `${title}. ${real.methods.map((method, index) => `${method}: ${values.map(row => format(row[index])).join(', ')} for Puzzle, Domino, Organize, and average.`).join(' ')}`);
-    document.querySelector('#metric-note').textContent = metric === 'success_rate'
-      ? 'Success rate (%) measures episodes that complete the entire task. Task score (0–100) measures the fraction of semantic stages completed.'
-      : 'Task score gives equal credit to completed semantic stages, normalized to 0–100 within each task. It is distinct from complete-task success rate.';
-  });
+dialog.addEventListener('close', syncHeroPlayback);
+document.querySelectorAll('video:not(.hero-video)').forEach(video => {
+  video.addEventListener('pause', syncHeroPlayback);
+  video.addEventListener('ended', syncHeroPlayback);
 });
-
-document.querySelectorAll('[data-example]').forEach(button => {
-  button.addEventListener('click', () => {
-    activate(button, '[data-example]');
-    const roboTwin = button.dataset.example === 'robotwin';
-    const path = `assets/images/${roboTwin ? 'robotwin' : 'robodojo'}-subtasks.jpg`;
-    const caption = `${roboTwin ? 'RoboTwin' : 'RoboDojo'} demonstrations decomposed into semantic subtasks.`;
-    const image = document.querySelector('#semantic-image');
-    image.src = path;
-    image.alt = caption;
-    image.height = roboTwin ? 1116 : 1126;
-    document.querySelector('#semantic-zoom').dataset.image = path;
-    document.querySelector('#semantic-zoom').dataset.caption = caption;
-    document.querySelector('#example-description').textContent = roboTwin
-      ? 'Semantic boundaries and subtask descriptions in RoboTwin demonstrations.'
-      : 'Semantic stages in RoboDojo, spanning manipulation and interaction tasks.';
-  });
-});
-
-fetch('assets/data/results.json').then(response => {
-  if (!response.ok) throw new Error(`Results request failed: ${response.status}`);
-  return response.json();
-}).then(data => { results = data; }).catch(() => {
-  document.querySelectorAll('[data-setting], [data-metric]').forEach(button => { button.disabled = true; });
-  notify('The interactive results could not load. The reported default values and paper remain available.');
-});
+syncHeroPlayback();
