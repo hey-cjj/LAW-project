@@ -15,8 +15,9 @@
   <link rel="icon" href="assets/favicon.svg">
   <link rel="preload" href="assets/fonts/instrument-serif-regular.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="assets/fonts/dm-sans-regular.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=7">
-  <script src="script.js?v=7" defer></script>
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="stylesheet" href="styles.css?v=8">
+  <script src="script.js?v=8" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#abstract">Skip to content</a>
@@ -32,6 +33,7 @@
       <a href="#bibtex">BibTeX</a>
     </nav>
   </div>
+  <div class="scroll-progress" aria-hidden="true"></div>
 </header>
 
 <main id="main">
@@ -92,14 +94,17 @@
       <div class="reel">
         <figure class="reel-item">
           <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/images/puzzle-poster.jpg" aria-hidden="true" tabindex="-1"><source src="assets/videos/puzzle-highlight.mp4" type="video/mp4"></video>
+          <span class="reel-progress" aria-hidden="true"><i></i></span>
           <figcaption><span>Puzzle</span><button class="reel-button full-video" type="button" data-task="puzzle" data-title="Puzzle" aria-haspopup="dialog" aria-label="Watch the full Puzzle rollout">Full rollout <span aria-hidden="true">↗</span></button></figcaption>
         </figure>
         <figure class="reel-item">
           <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/images/domino-poster.jpg" aria-hidden="true" tabindex="-1"><source src="assets/videos/domino-highlight.mp4" type="video/mp4"></video>
+          <span class="reel-progress" aria-hidden="true"><i></i></span>
           <figcaption><span>Domino</span><button class="reel-button full-video" type="button" data-task="domino" data-title="Domino" aria-haspopup="dialog" aria-label="Watch the full Domino rollout">Full rollout <span aria-hidden="true">↗</span></button></figcaption>
         </figure>
         <figure class="reel-item">
           <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/images/organize-poster.jpg" aria-hidden="true" tabindex="-1"><source src="assets/videos/organize-highlight.mp4" type="video/mp4"></video>
+          <span class="reel-progress" aria-hidden="true"><i></i></span>
           <figcaption><span>Organize</span><button class="reel-button full-video" type="button" data-task="organize" data-title="Organize" aria-haspopup="dialog" aria-label="Watch the full Organize rollout">Full rollout <span aria-hidden="true">↗</span></button></figcaption>
         </figure>
       </div>
@@ -110,18 +115,18 @@
     </div>
 
     <div class="container">
-      <dl class="highlights" aria-label="Key results">
+      <dl class="highlights" aria-label="Key results" data-reveal>
         <div class="stat">
           <dt>RoboTwin, 50 tasks</dt>
-          <dd><strong>94.21<small>%</small></strong><span>LAW + <span class="nowrap">Fast-WAM</span> average success, <b>+2.36</b> over <span class="nowrap">Fast-WAM</span></span></dd>
+          <dd><strong data-count="94.21">94.21<small>%</small></strong><span>LAW + <span class="nowrap">Fast-WAM</span> average success, <b>+2.36</b> over <span class="nowrap">Fast-WAM</span></span></dd>
         </div>
         <div class="stat">
           <dt>RoboTwin, with <span class="nowrap">OpenWAM-α</span></dt>
-          <dd><strong>95.56<small>%</small></strong><span>LAW + <span class="nowrap">OpenWAM-α</span> average success, <b>+1.96</b> over <span class="nowrap">OpenWAM-α</span></span></dd>
+          <dd><strong data-count="95.56">95.56<small>%</small></strong><span>LAW + <span class="nowrap">OpenWAM-α</span> average success, <b>+1.96</b> over <span class="nowrap">OpenWAM-α</span></span></dd>
         </div>
         <div class="stat">
           <dt>Real robot, 3 long-horizon tasks</dt>
-          <dd><strong>65<small>%</small></strong><span>Average success, vs. 28.33% for π₀.₅ and 25% for <span class="nowrap">Fast-WAM</span></span></dd>
+          <dd><strong data-count="65">65<small>%</small></strong><span>Average success, vs. 28.33% for π₀.₅ and 25% for <span class="nowrap">Fast-WAM</span></span></dd>
         </div>
       </dl>
     </div>
@@ -130,13 +135,13 @@
   <section class="section" id="abstract">
     <div class="container">
       <div class="abstract-layout">
-        <div class="section-head">
+        <div class="section-head" data-reveal>
           <span class="kicker">Overview</span>
           <h2>Abstract</h2>
         </div>
-        <p class="abstract-text">World-action models jointly predict actions and future world states, but long-horizon manipulation further requires language reasoning to plan subtask objectives, assess execution progress, and guide action selection. We present LAW, a closed-loop VLM–WAM framework that unifies language reasoning, action generation, and world modeling through semantic subtask progress. Within the LAW agent, a hybrid-expert vision-language model plans the remaining subtasks, estimates the values of and fuses actions proposed by a world-action model, and asynchronously assesses execution status to support continued execution and subtask transitions. Within the world-action model, Mixture-of-Transformer Experts integrates modality-specific and shared computation for joint video–action modeling. Dual-stream hierarchical visual memory maintains temporal context for both models, while subtask-local value learning aligns action evaluation with semantic objectives and preserves supervision from successful prefixes of failed trajectories. LAW achieves 94.21% average success across 50 RoboTwin tasks, 95.56% with OpenWAM-α, and 65% on three long-horizon real-robot tasks.</p>
+        <p class="abstract-text" data-reveal style="--d:.1s">World-action models jointly predict actions and future world states, but long-horizon manipulation further requires language reasoning to plan subtask objectives, assess execution progress, and guide action selection. We present LAW, a closed-loop VLM–WAM framework that unifies language reasoning, action generation, and world modeling through semantic subtask progress. Within the LAW agent, a hybrid-expert vision-language model plans the remaining subtasks, estimates the values of and fuses actions proposed by a world-action model, and asynchronously assesses execution status to support continued execution and subtask transitions. Within the world-action model, Mixture-of-Transformer Experts integrates modality-specific and shared computation for joint video–action modeling. Dual-stream hierarchical visual memory maintains temporal context for both models, while subtask-local value learning aligns action evaluation with semantic objectives and preserves supervision from successful prefixes of failed trajectories. LAW achieves 94.21% average success across 50 RoboTwin tasks, 95.56% with OpenWAM-α, and 65% on three long-horizon real-robot tasks.</p>
       </div>
-      <figure class="figure-card">
+      <figure class="figure-card" data-reveal style="--d:.1s">
         <button class="image-zoom" type="button" data-image="assets/images/teaser.webp?v=6" data-caption="Overview of LAW: semantic subtask progress, closed-loop control, and evaluation." aria-label="Enlarge LAW overview" aria-haspopup="dialog"><img src="assets/images/teaser.webp?v=6" width="2116" height="1511" loading="lazy" alt="LAW overview: semantic subtask planning, progress-aware control, and simulation and real-world results."><span class="zoom-hint">View figure <span aria-hidden="true">↗</span></span></button>
       </figure>
     </div>
@@ -144,16 +149,16 @@
 
   <section class="section section-tint" id="method">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head" data-reveal>
         <span class="kicker">Method</span>
         <h2>Framework overview</h2>
         <p class="lead">LAW pairs a hybrid-expert VLM with a world-action model. The planner specifies the active objective, the WAM proposes action chunks, and the value expert selects actions. Execution feedback keeps the agent on the current subtask or advances the plan.</p>
       </div>
-      <figure class="figure-card">
+      <figure class="figure-card" data-reveal style="--d:.1s">
         <button class="image-zoom" type="button" data-image="assets/images/framework.png?v=6" data-caption="The LAW framework: a hybrid-expert VLM, MoTE world-action model, and progress-aware closed-loop agent." aria-label="Enlarge LAW framework diagram" aria-haspopup="dialog"><img src="assets/images/framework.png?v=6" width="3439" height="1882" loading="lazy" alt="LAW architecture. Planner, state, and value adapters share a frozen VLM. MoTE combines private and shared video-action experts. The agent proposes actions, ranks and fuses them, executes a prefix, and monitors subtask completion asynchronously."><span class="zoom-hint">View figure <span aria-hidden="true">↗</span></span></button>
       </figure>
 
-      <ol class="control-cycle" aria-label="LAW control loop">
+      <ol class="control-cycle" aria-label="LAW control loop" data-reveal>
         <li><span>1</span>Plan</li>
         <li><span>2</span>Propose</li>
         <li><span>3</span>Select &amp; fuse</li>
@@ -162,49 +167,56 @@
       </ol>
 
       <article class="method-block method-wide">
-        <div class="method-copy">
+        <div class="method-copy" data-reveal>
           <span class="method-number">01</span>
           <h3>Hybrid-expert VLM</h3>
           <p>Planner, state, and value experts share a frozen VLM backbone with separate LoRA adapters. Each specializes in a control function while reusing the same visual-language representations.</p>
         </div>
-        <figure class="figure-card">
+        <figure class="figure-card" data-reveal style="--d:.1s">
           <button class="image-zoom" type="button" data-image="assets/images/control-loop.webp?v=6" data-caption="Mixed-frequency coordination of planner, state, value, and action generation" aria-label="Enlarge Mixed-frequency coordination of planner, state, value, and action generation" aria-haspopup="dialog"><img src="assets/images/control-loop.webp?v=6" width="2000" height="561" loading="lazy" alt="Mixed-frequency coordination of planner, state, value, and action generation"><span class="zoom-hint">View figure <span aria-hidden="true">↗</span></span></button>
         </figure>
       </article>
 
       <article class="method-block">
-        <div class="method-copy">
+        <div class="method-copy" data-reveal>
           <span class="method-number">02</span>
           <h3>Joint video–action modeling with MoTE</h3>
           <p>Video and action streams exchange information through joint attention. Modality-specific experts preserve their distinct features, while a shared expert learns common physical dynamics. MoTE strengthens joint video–action modeling by learning shared temporal and physical structure beyond attention-based information exchange.</p>
         </div>
-        <figure class="figure-card">
+        <figure class="figure-card" data-reveal style="--d:.1s">
           <button class="image-zoom" type="button" data-image="assets/images/mote.webp?v=6" data-caption="MoTE architecture with private video and action experts and a shared expert" aria-label="Enlarge MoTE architecture with private video and action experts and a shared expert" aria-haspopup="dialog"><img src="assets/images/mote.webp?v=6" width="1900" height="1251" loading="lazy" alt="MoTE architecture with private video and action experts and a shared expert"><span class="zoom-hint">View figure <span aria-hidden="true">↗</span></span></button>
         </figure>
       </article>
 
       <article class="method-block method-reverse memory-block">
-        <div class="method-copy">
+        <div class="method-copy" data-reveal>
           <span class="method-number">03</span>
           <h3>Dual-stream hierarchical memory</h3>
           <p>The VLM and WAM retain the same observation timestamps in their own token spaces. Recent observations and subtask-boundary states preserve spatial detail; older history is compressed.</p>
           <div class="memory-legend"><span><i style="background:#80bde8"></i>Recent</span><span><i style="background:#99c971"></i>Boundary</span><span><i style="background:#87d8ed"></i>Long-term</span></div>
         </div>
-        <figure class="figure-card">
+        <figure class="figure-card" data-reveal style="--d:.1s">
           <button class="image-zoom" type="button" data-image="assets/images/memory.png?v=6" data-caption="Hierarchical attention over recent, subtask-boundary, and compressed long-term observations" aria-label="Enlarge Hierarchical attention over recent, subtask-boundary, and compressed long-term observations" aria-haspopup="dialog"><img src="assets/images/memory.png?v=6" width="4308" height="4232" loading="lazy" alt="Hierarchical attention over recent, subtask-boundary, and compressed long-term observations"><span class="zoom-hint">View figure <span aria-hidden="true">↗</span></span></button>
         </figure>
       </article>
 
       <article class="method-block value-block">
-        <div class="method-copy">
+        <div class="method-copy" data-reveal>
           <span class="method-number">04</span>
           <h3>Subtask-local value learning</h3>
           <p>A successful subtask receives a terminal reward of 1. Value targets stop at semantic boundaries, so completed stages still provide useful supervision when a later stage fails.</p>
         </div>
-        <div class="value-selection">
-          <div><strong>32</strong><span>candidate action chunks</span></div>
-          <span class="selection-arrow" aria-hidden="true">→</span>
-          <div><strong>8</strong><span>top candidates fused</span></div>
+        <div class="value-card" data-reveal style="--d:.1s">
+          <div class="value-selection">
+            <div class="vs-stat vs-propose"><strong>32</strong><span>candidate action chunks</span></div>
+            <span class="selection-arrow" aria-hidden="true">→</span>
+            <div class="vs-stat vs-fuse"><strong>8</strong><span>top candidates fused</span></div>
+          </div>
+          <div class="value-viz" aria-hidden="true">
+            <div class="chunk-grid"></div>
+            <span class="fuse-link"></span>
+            <div class="fused-chunk"><i><b></b></i><span>Fused</span></div>
+          </div>
         </div>
       </article>
     </div>
@@ -212,27 +224,27 @@
 
   <section class="section" id="demonstrations" aria-labelledby="demos-title">
     <div class="container">
-      <div class="section-head section-head-split">
+      <div class="section-head section-head-split" data-reveal>
         <div>
           <span class="kicker">Real world</span>
           <h2 id="demos-title">Real-world experiments</h2>
         </div>
-        <div class="chart-legend"><span><i class="s0"></i>LAW</span><span><i class="s1"></i>π₀.₅</span><span><i class="s2"></i>Fast-WAM</span></div>
+        <div class="chart-legend" role="group" aria-label="Highlight a method"><button class="legend-item" type="button" data-series="0" aria-pressed="false"><i class="s0"></i>LAW</button><button class="legend-item" type="button" data-series="1" aria-pressed="false"><i class="s1"></i>π₀.₅</button><button class="legend-item" type="button" data-series="2" aria-pressed="false"><i class="s2"></i>Fast-WAM</button></div>
       </div>
       <div class="real-charts">
-        <div class="chart-card"><h3>Success rate (%)</h3><svg viewBox="0 0 560 318" role="img" aria-labelledby="success-rate-title success-rate-desc"><title id="success-rate-title">Success rate (%)</title><desc id="success-rate-desc">Puzzle: LAW 60, π₀.₅ 20, Fast-WAM 15; Domino: LAW 70, π₀.₅ 40, Fast-WAM 20; Organize: LAW 65, π₀.₅ 25, Fast-WAM 40; Average: LAW 65, π₀.₅ 28.33, Fast-WAM 25</desc><rect class="c-band" x="427.0" y="12" width="115.0" height="280" rx="10"/><line class="c-axis" x1="40" x2="548" y1="250.0" y2="250.0"/><text class="c-tick" x="30" y="254.0" text-anchor="end">0</text><line class="c-grid" x1="40" x2="548" y1="194.0" y2="194.0"/><text class="c-tick" x="30" y="198.0" text-anchor="end">25</text><line class="c-grid" x1="40" x2="548" y1="138.0" y2="138.0"/><text class="c-tick" x="30" y="142.0" text-anchor="end">50</text><line class="c-grid" x1="40" x2="548" y1="82.0" y2="82.0"/><text class="c-tick" x="30" y="86.0" text-anchor="end">75</text><line class="c-grid" x1="40" x2="548" y1="26.0" y2="26.0"/><text class="c-tick" x="30" y="30.0" text-anchor="end">100</text><path class="c-bar s0" d="M58.5,250V120.6Q58.5,115.6 63.5,115.6H79.5Q84.5,115.6 84.5,120.6V250Z"/><text class="c-val s0" x="71.5" y="108.6" text-anchor="middle">60</text><path class="c-bar s1" d="M90.5,250V210.2Q90.5,205.2 95.5,205.2H111.5Q116.5,205.2 116.5,210.2V250Z"/><text class="c-val s1" x="103.5" y="198.2" text-anchor="middle">20</text><path class="c-bar s2" d="M122.5,250V221.4Q122.5,216.4 127.5,216.4H143.5Q148.5,216.4 148.5,221.4V250Z"/><text class="c-val s2" x="135.5" y="209.4" text-anchor="middle">15</text><text class="c-cat" x="103.5" y="276" text-anchor="middle">Puzzle</text><path class="c-bar s0" d="M185.5,250V98.2Q185.5,93.2 190.5,93.2H206.5Q211.5,93.2 211.5,98.2V250Z"/><text class="c-val s0" x="198.5" y="86.2" text-anchor="middle">70</text><path class="c-bar s1" d="M217.5,250V165.4Q217.5,160.4 222.5,160.4H238.5Q243.5,160.4 243.5,165.4V250Z"/><text class="c-val s1" x="230.5" y="153.4" text-anchor="middle">40</text><path class="c-bar s2" d="M249.5,250V210.2Q249.5,205.2 254.5,205.2H270.5Q275.5,205.2 275.5,210.2V250Z"/><text class="c-val s2" x="262.5" y="198.2" text-anchor="middle">20</text><text class="c-cat" x="230.5" y="276" text-anchor="middle">Domino</text><path class="c-bar s0" d="M312.5,250V109.4Q312.5,104.4 317.5,104.4H333.5Q338.5,104.4 338.5,109.4V250Z"/><text class="c-val s0" x="325.5" y="97.4" text-anchor="middle">65</text><path class="c-bar s1" d="M344.5,250V199.0Q344.5,194.0 349.5,194.0H365.5Q370.5,194.0 370.5,199.0V250Z"/><text class="c-val s1" x="357.5" y="187.0" text-anchor="middle">25</text><path class="c-bar s2" d="M376.5,250V165.4Q376.5,160.4 381.5,160.4H397.5Q402.5,160.4 402.5,165.4V250Z"/><text class="c-val s2" x="389.5" y="153.4" text-anchor="middle">40</text><text class="c-cat" x="357.5" y="276" text-anchor="middle">Organize</text><path class="c-bar s0" d="M439.5,250V109.4Q439.5,104.4 444.5,104.4H460.5Q465.5,104.4 465.5,109.4V250Z"/><text class="c-val s0" x="452.5" y="97.4" text-anchor="middle">65</text><path class="c-bar s1" d="M471.5,250V191.5Q471.5,186.5 476.5,186.5H492.5Q497.5,186.5 497.5,191.5V250Z"/><text class="c-val s1" x="484.5" y="179.5" text-anchor="middle">28.33</text><path class="c-bar s2" d="M503.5,250V199.0Q503.5,194.0 508.5,194.0H524.5Q529.5,194.0 529.5,199.0V250Z"/><text class="c-val s2" x="516.5" y="187.0" text-anchor="middle">25</text><text class="c-cat c-cat-avg" x="484.5" y="276" text-anchor="middle">Average</text></svg></div>
-        <div class="chart-card"><h3>Task score (0–100)</h3><svg viewBox="0 0 560 318" role="img" aria-labelledby="task-score-title task-score-desc"><title id="task-score-title">Task score (0–100)</title><desc id="task-score-desc">Puzzle: LAW 86.64, π₀.₅ 54.97, Fast-WAM 46.64; Domino: LAW 80, π₀.₅ 56, Fast-WAM 39; Organize: LAW 85.54, π₀.₅ 55.53, Fast-WAM 69.97; Average: LAW 84.06, π₀.₅ 55.5, Fast-WAM 51.87</desc><rect class="c-band" x="427.0" y="12" width="115.0" height="280" rx="10"/><line class="c-axis" x1="40" x2="548" y1="250.0" y2="250.0"/><text class="c-tick" x="30" y="254.0" text-anchor="end">0</text><line class="c-grid" x1="40" x2="548" y1="194.0" y2="194.0"/><text class="c-tick" x="30" y="198.0" text-anchor="end">25</text><line class="c-grid" x1="40" x2="548" y1="138.0" y2="138.0"/><text class="c-tick" x="30" y="142.0" text-anchor="end">50</text><line class="c-grid" x1="40" x2="548" y1="82.0" y2="82.0"/><text class="c-tick" x="30" y="86.0" text-anchor="end">75</text><line class="c-grid" x1="40" x2="548" y1="26.0" y2="26.0"/><text class="c-tick" x="30" y="30.0" text-anchor="end">100</text><path class="c-bar s0" d="M58.5,250V60.9Q58.5,55.9 63.5,55.9H79.5Q84.5,55.9 84.5,60.9V250Z"/><text class="c-val s0" x="71.5" y="48.9" text-anchor="middle">86.64</text><path class="c-bar s1" d="M90.5,250V131.9Q90.5,126.9 95.5,126.9H111.5Q116.5,126.9 116.5,131.9V250Z"/><text class="c-val s1" x="103.5" y="119.9" text-anchor="middle">54.97</text><path class="c-bar s2" d="M122.5,250V150.5Q122.5,145.5 127.5,145.5H143.5Q148.5,145.5 148.5,150.5V250Z"/><text class="c-val s2" x="135.5" y="138.5" text-anchor="middle">46.64</text><text class="c-cat" x="103.5" y="276" text-anchor="middle">Puzzle</text><path class="c-bar s0" d="M185.5,250V75.8Q185.5,70.8 190.5,70.8H206.5Q211.5,70.8 211.5,75.8V250Z"/><text class="c-val s0" x="198.5" y="63.8" text-anchor="middle">80</text><path class="c-bar s1" d="M217.5,250V129.6Q217.5,124.6 222.5,124.6H238.5Q243.5,124.6 243.5,129.6V250Z"/><text class="c-val s1" x="230.5" y="117.6" text-anchor="middle">56</text><path class="c-bar s2" d="M249.5,250V167.6Q249.5,162.6 254.5,162.6H270.5Q275.5,162.6 275.5,167.6V250Z"/><text class="c-val s2" x="262.5" y="155.6" text-anchor="middle">39</text><text class="c-cat" x="230.5" y="276" text-anchor="middle">Domino</text><path class="c-bar s0" d="M312.5,250V63.4Q312.5,58.4 317.5,58.4H333.5Q338.5,58.4 338.5,63.4V250Z"/><text class="c-val s0" x="325.5" y="51.4" text-anchor="middle">85.54</text><path class="c-bar s1" d="M344.5,250V130.6Q344.5,125.6 349.5,125.6H365.5Q370.5,125.6 370.5,130.6V250Z"/><text class="c-val s1" x="357.5" y="118.6" text-anchor="middle">55.53</text><path class="c-bar s2" d="M376.5,250V98.3Q376.5,93.3 381.5,93.3H397.5Q402.5,93.3 402.5,98.3V250Z"/><text class="c-val s2" x="389.5" y="86.3" text-anchor="middle">69.97</text><text class="c-cat" x="357.5" y="276" text-anchor="middle">Organize</text><path class="c-bar s0" d="M439.5,250V66.7Q439.5,61.7 444.5,61.7H460.5Q465.5,61.7 465.5,66.7V250Z"/><text class="c-val s0" x="452.5" y="54.7" text-anchor="middle">84.06</text><path class="c-bar s1" d="M471.5,250V130.7Q471.5,125.7 476.5,125.7H492.5Q497.5,125.7 497.5,130.7V250Z"/><text class="c-val s1" x="484.5" y="118.7" text-anchor="middle">55.5</text><path class="c-bar s2" d="M503.5,250V138.8Q503.5,133.8 508.5,133.8H524.5Q529.5,133.8 529.5,138.8V250Z"/><text class="c-val s2" x="516.5" y="126.8" text-anchor="middle">51.87</text><text class="c-cat c-cat-avg" x="484.5" y="276" text-anchor="middle">Average</text></svg></div>
+        <div class="chart-card" data-reveal><h3>Success rate (%)</h3><svg viewBox="0 0 560 318" role="img" aria-labelledby="success-rate-title success-rate-desc"><title id="success-rate-title">Success rate (%)</title><desc id="success-rate-desc">Puzzle: LAW 60, π₀.₅ 20, Fast-WAM 15; Domino: LAW 70, π₀.₅ 40, Fast-WAM 20; Organize: LAW 65, π₀.₅ 25, Fast-WAM 40; Average: LAW 65, π₀.₅ 28.33, Fast-WAM 25</desc><rect class="c-band" x="427.0" y="12" width="115.0" height="280" rx="10"/><line class="c-axis" x1="40" x2="548" y1="250.0" y2="250.0"/><text class="c-tick" x="30" y="254.0" text-anchor="end">0</text><line class="c-grid" x1="40" x2="548" y1="194.0" y2="194.0"/><text class="c-tick" x="30" y="198.0" text-anchor="end">25</text><line class="c-grid" x1="40" x2="548" y1="138.0" y2="138.0"/><text class="c-tick" x="30" y="142.0" text-anchor="end">50</text><line class="c-grid" x1="40" x2="548" y1="82.0" y2="82.0"/><text class="c-tick" x="30" y="86.0" text-anchor="end">75</text><line class="c-grid" x1="40" x2="548" y1="26.0" y2="26.0"/><text class="c-tick" x="30" y="30.0" text-anchor="end">100</text><path class="c-bar s0" data-series="0" style="--i:0" d="M58.5,250V120.6Q58.5,115.6 63.5,115.6H79.5Q84.5,115.6 84.5,120.6V250Z"/><text class="c-val s0" data-series="0" style="--i:0" x="71.5" y="108.6" text-anchor="middle">60</text><path class="c-bar s1" data-series="1" style="--i:1" d="M90.5,250V210.2Q90.5,205.2 95.5,205.2H111.5Q116.5,205.2 116.5,210.2V250Z"/><text class="c-val s1" data-series="1" style="--i:1" x="103.5" y="198.2" text-anchor="middle">20</text><path class="c-bar s2" data-series="2" style="--i:2" d="M122.5,250V221.4Q122.5,216.4 127.5,216.4H143.5Q148.5,216.4 148.5,221.4V250Z"/><text class="c-val s2" data-series="2" style="--i:2" x="135.5" y="209.4" text-anchor="middle">15</text><text class="c-cat" x="103.5" y="276" text-anchor="middle">Puzzle</text><path class="c-bar s0" data-series="0" style="--i:3" d="M185.5,250V98.2Q185.5,93.2 190.5,93.2H206.5Q211.5,93.2 211.5,98.2V250Z"/><text class="c-val s0" data-series="0" style="--i:3" x="198.5" y="86.2" text-anchor="middle">70</text><path class="c-bar s1" data-series="1" style="--i:4" d="M217.5,250V165.4Q217.5,160.4 222.5,160.4H238.5Q243.5,160.4 243.5,165.4V250Z"/><text class="c-val s1" data-series="1" style="--i:4" x="230.5" y="153.4" text-anchor="middle">40</text><path class="c-bar s2" data-series="2" style="--i:5" d="M249.5,250V210.2Q249.5,205.2 254.5,205.2H270.5Q275.5,205.2 275.5,210.2V250Z"/><text class="c-val s2" data-series="2" style="--i:5" x="262.5" y="198.2" text-anchor="middle">20</text><text class="c-cat" x="230.5" y="276" text-anchor="middle">Domino</text><path class="c-bar s0" data-series="0" style="--i:6" d="M312.5,250V109.4Q312.5,104.4 317.5,104.4H333.5Q338.5,104.4 338.5,109.4V250Z"/><text class="c-val s0" data-series="0" style="--i:6" x="325.5" y="97.4" text-anchor="middle">65</text><path class="c-bar s1" data-series="1" style="--i:7" d="M344.5,250V199.0Q344.5,194.0 349.5,194.0H365.5Q370.5,194.0 370.5,199.0V250Z"/><text class="c-val s1" data-series="1" style="--i:7" x="357.5" y="187.0" text-anchor="middle">25</text><path class="c-bar s2" data-series="2" style="--i:8" d="M376.5,250V165.4Q376.5,160.4 381.5,160.4H397.5Q402.5,160.4 402.5,165.4V250Z"/><text class="c-val s2" data-series="2" style="--i:8" x="389.5" y="153.4" text-anchor="middle">40</text><text class="c-cat" x="357.5" y="276" text-anchor="middle">Organize</text><path class="c-bar s0" data-series="0" style="--i:9" d="M439.5,250V109.4Q439.5,104.4 444.5,104.4H460.5Q465.5,104.4 465.5,109.4V250Z"/><text class="c-val s0" data-series="0" style="--i:9" x="452.5" y="97.4" text-anchor="middle">65</text><path class="c-bar s1" data-series="1" style="--i:10" d="M471.5,250V191.5Q471.5,186.5 476.5,186.5H492.5Q497.5,186.5 497.5,191.5V250Z"/><text class="c-val s1" data-series="1" style="--i:10" x="484.5" y="179.5" text-anchor="middle">28.33</text><path class="c-bar s2" data-series="2" style="--i:11" d="M503.5,250V199.0Q503.5,194.0 508.5,194.0H524.5Q529.5,194.0 529.5,199.0V250Z"/><text class="c-val s2" data-series="2" style="--i:11" x="516.5" y="187.0" text-anchor="middle">25</text><text class="c-cat c-cat-avg" x="484.5" y="276" text-anchor="middle">Average</text></svg></div>
+        <div class="chart-card" data-reveal style="--d:.12s"><h3>Task score (0–100)</h3><svg viewBox="0 0 560 318" role="img" aria-labelledby="task-score-title task-score-desc"><title id="task-score-title">Task score (0–100)</title><desc id="task-score-desc">Puzzle: LAW 86.64, π₀.₅ 54.97, Fast-WAM 46.64; Domino: LAW 80, π₀.₅ 56, Fast-WAM 39; Organize: LAW 85.54, π₀.₅ 55.53, Fast-WAM 69.97; Average: LAW 84.06, π₀.₅ 55.5, Fast-WAM 51.87</desc><rect class="c-band" x="427.0" y="12" width="115.0" height="280" rx="10"/><line class="c-axis" x1="40" x2="548" y1="250.0" y2="250.0"/><text class="c-tick" x="30" y="254.0" text-anchor="end">0</text><line class="c-grid" x1="40" x2="548" y1="194.0" y2="194.0"/><text class="c-tick" x="30" y="198.0" text-anchor="end">25</text><line class="c-grid" x1="40" x2="548" y1="138.0" y2="138.0"/><text class="c-tick" x="30" y="142.0" text-anchor="end">50</text><line class="c-grid" x1="40" x2="548" y1="82.0" y2="82.0"/><text class="c-tick" x="30" y="86.0" text-anchor="end">75</text><line class="c-grid" x1="40" x2="548" y1="26.0" y2="26.0"/><text class="c-tick" x="30" y="30.0" text-anchor="end">100</text><path class="c-bar s0" data-series="0" style="--i:0" d="M58.5,250V60.9Q58.5,55.9 63.5,55.9H79.5Q84.5,55.9 84.5,60.9V250Z"/><text class="c-val s0" data-series="0" style="--i:0" x="71.5" y="48.9" text-anchor="middle">86.64</text><path class="c-bar s1" data-series="1" style="--i:1" d="M90.5,250V131.9Q90.5,126.9 95.5,126.9H111.5Q116.5,126.9 116.5,131.9V250Z"/><text class="c-val s1" data-series="1" style="--i:1" x="103.5" y="119.9" text-anchor="middle">54.97</text><path class="c-bar s2" data-series="2" style="--i:2" d="M122.5,250V150.5Q122.5,145.5 127.5,145.5H143.5Q148.5,145.5 148.5,150.5V250Z"/><text class="c-val s2" data-series="2" style="--i:2" x="135.5" y="138.5" text-anchor="middle">46.64</text><text class="c-cat" x="103.5" y="276" text-anchor="middle">Puzzle</text><path class="c-bar s0" data-series="0" style="--i:3" d="M185.5,250V75.8Q185.5,70.8 190.5,70.8H206.5Q211.5,70.8 211.5,75.8V250Z"/><text class="c-val s0" data-series="0" style="--i:3" x="198.5" y="63.8" text-anchor="middle">80</text><path class="c-bar s1" data-series="1" style="--i:4" d="M217.5,250V129.6Q217.5,124.6 222.5,124.6H238.5Q243.5,124.6 243.5,129.6V250Z"/><text class="c-val s1" data-series="1" style="--i:4" x="230.5" y="117.6" text-anchor="middle">56</text><path class="c-bar s2" data-series="2" style="--i:5" d="M249.5,250V167.6Q249.5,162.6 254.5,162.6H270.5Q275.5,162.6 275.5,167.6V250Z"/><text class="c-val s2" data-series="2" style="--i:5" x="262.5" y="155.6" text-anchor="middle">39</text><text class="c-cat" x="230.5" y="276" text-anchor="middle">Domino</text><path class="c-bar s0" data-series="0" style="--i:6" d="M312.5,250V63.4Q312.5,58.4 317.5,58.4H333.5Q338.5,58.4 338.5,63.4V250Z"/><text class="c-val s0" data-series="0" style="--i:6" x="325.5" y="51.4" text-anchor="middle">85.54</text><path class="c-bar s1" data-series="1" style="--i:7" d="M344.5,250V130.6Q344.5,125.6 349.5,125.6H365.5Q370.5,125.6 370.5,130.6V250Z"/><text class="c-val s1" data-series="1" style="--i:7" x="357.5" y="118.6" text-anchor="middle">55.53</text><path class="c-bar s2" data-series="2" style="--i:8" d="M376.5,250V98.3Q376.5,93.3 381.5,93.3H397.5Q402.5,93.3 402.5,98.3V250Z"/><text class="c-val s2" data-series="2" style="--i:8" x="389.5" y="86.3" text-anchor="middle">69.97</text><text class="c-cat" x="357.5" y="276" text-anchor="middle">Organize</text><path class="c-bar s0" data-series="0" style="--i:9" d="M439.5,250V66.7Q439.5,61.7 444.5,61.7H460.5Q465.5,61.7 465.5,66.7V250Z"/><text class="c-val s0" data-series="0" style="--i:9" x="452.5" y="54.7" text-anchor="middle">84.06</text><path class="c-bar s1" data-series="1" style="--i:10" d="M471.5,250V130.7Q471.5,125.7 476.5,125.7H492.5Q497.5,125.7 497.5,130.7V250Z"/><text class="c-val s1" data-series="1" style="--i:10" x="484.5" y="118.7" text-anchor="middle">55.5</text><path class="c-bar s2" data-series="2" style="--i:11" d="M503.5,250V138.8Q503.5,133.8 508.5,133.8H524.5Q529.5,133.8 529.5,138.8V250Z"/><text class="c-val s2" data-series="2" style="--i:11" x="516.5" y="126.8" text-anchor="middle">51.87</text><text class="c-cat c-cat-avg" x="484.5" y="276" text-anchor="middle">Average</text></svg></div>
       </div>
     </div>
   </section>
 
   <section class="section section-tint" id="results">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head" data-reveal>
         <span class="kicker">Simulation</span>
         <h2>RoboTwin results</h2>
       </div>
-      <div class="table-card">
+      <div class="table-card" data-reveal style="--d:.08s">
         <div class="table-scroll">
           <table>
             <thead><tr><th scope="col">Method</th><th scope="col">Clean (%)</th><th scope="col">Randomized (%)</th><th scope="col">Average (%)</th></tr></thead>
@@ -252,17 +264,17 @@
           </table>
         </div>
       </div>
-      <p class="table-note"><b>Bold</b>: best result in each column. Green tags: gain of LAW over the backbone it builds on.</p>
+      <p class="table-note"><b>Bold</b>: best result in each column. Green tags: gain of LAW over the backbone it builds on. Click a column header to sort.</p>
     </div>
   </section>
 
   <section class="section" id="bibtex">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head" data-reveal>
         <span class="kicker">Citation</span>
         <h2>BibTeX</h2>
       </div>
-      <div class="bibtex-card">
+      <div class="bibtex-card" data-reveal style="--d:.08s">
         <button class="copy-bibtex" type="button" aria-label="Copy BibTeX to clipboard">Copy</button>
 <pre><code id="bibtex-entry">@article{cao2026law,
   title   = {LAW: Unifying Language, Action, and World Modeling for Agentic Physical Intelligence},
@@ -289,7 +301,7 @@
 </footer>
 
 <dialog id="media-dialog" class="media-dialog" aria-labelledby="dialog-title">
-  <div class="dialog-top"><h2 id="dialog-title">LAW</h2><button class="dialog-close" type="button" aria-label="Close viewer">Close <span aria-hidden="true">×</span></button></div>
+  <div class="dialog-top"><h2 id="dialog-title">LAW</h2><span class="dialog-hint" hidden>Scroll or click to zoom · drag to pan</span><button class="dialog-close" type="button" aria-label="Close viewer">Close <span aria-hidden="true">×</span></button></div>
   <div id="dialog-content"></div>
   <p id="dialog-caption" hidden></p>
 </dialog>
