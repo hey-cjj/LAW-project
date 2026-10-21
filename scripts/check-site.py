@@ -58,4 +58,4 @@ for path in root.rglob('*'):
             errors.append(f'private metadata in public file: {path.relative_to(root)}')
 if errors:
     raise SystemExit('\n'.join(errors))
-print(f'PASS: {len(doc.links)} resource/anchor links, 3 controlled demo videos, exact result contracts, static asset sizes, and private metadata scan.')
+print(f'PASS: {len(doc.links)} resource/anchor links, {len(doc.videos)} videos, exact result contracts, static asset sizes, and private metadata scan.')

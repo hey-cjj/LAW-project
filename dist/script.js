@@ -22,22 +22,6 @@ function monitorVideo(video) {
   video.addEventListener('play', () => pauseVideos(video));
   video.addEventListener('error', () => notify('The video could not load. Please try the download link or refresh the page.'));
 }
-document.querySelectorAll('.video-wrap video').forEach(video => {
-  monitorVideo(video);
-  const play = document.createElement('button');
-  play.className = 'play-demo';
-  play.setAttribute('aria-label', `Play ${video.id.split('-')[0]} highlight video`);
-  play.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 10 6-10 6z"/></svg>';
-  video.controls = false;
-  play.addEventListener('click', async () => {
-    video.controls = true;
-    play.hidden = true;
-    try { await video.play(); }
-    catch { play.hidden = false; notify('Press play again, or open the complete video.'); }
-  });
-  video.parentElement.append(play);
-});
-
 function showDialog(trigger, title, caption) {
   pauseVideos();
   lastFocused = trigger;
@@ -124,8 +108,8 @@ function syncHeroPlayback() {
     if (play) video.play().catch(() => {});
     else video.pause();
   });
-  heroPlayback.textContent = heroPaused ? 'Play ▶' : 'Pause ❚❚';
-  heroPlayback.setAttribute('aria-label', heroPaused ? 'Play background videos' : 'Pause background videos');
+  heroPlayback.textContent = heroPaused ? 'Play' : 'Pause';
+  heroPlayback.setAttribute('aria-label', heroPaused ? 'Play videos' : 'Pause videos');
   heroPlayback.setAttribute('aria-pressed', String(heroPaused));
 }
 heroPlayback.addEventListener('click', () => { heroPaused = !heroPaused; syncHeroPlayback(); });
@@ -140,3 +124,38 @@ document.querySelectorAll('video:not(.hero-video)').forEach(video => {
   video.addEventListener('ended', syncHeroPlayback);
 });
 syncHeroPlayback();
+
+// Header elevation and section highlighting in the navigation.
+const header = document.querySelector('.site-header');
+const syncHeader = () => header.classList.toggle('scrolled', scrollY > 8);
+addEventListener('scroll', syncHeader, { passive: true });
+syncHeader();
+
+const navLinks = [...document.querySelectorAll('nav a[href^="#"]')];
+const sections = navLinks.map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+const sectionObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`));
+  });
+}, { rootMargin: '-45% 0px -50% 0px' });
+sections.forEach(section => sectionObserver.observe(section));
+
+// Copy BibTeX.
+const copyBibtex = document.querySelector('.copy-bibtex');
+copyBibtex?.addEventListener('click', async () => {
+  const text = document.querySelector('#bibtex-entry').textContent;
+  try {
+    await navigator.clipboard.writeText(text);
+  } catch {
+    const range = document.createRange();
+    range.selectNodeContents(document.querySelector('#bibtex-entry'));
+    getSelection().removeAllRanges();
+    getSelection().addRange(range);
+    document.execCommand('copy');
+  }
+  copyBibtex.textContent = 'Copied';
+  copyBibtex.classList.add('copied');
+  clearTimeout(copyBibtex.timer);
+  copyBibtex.timer = setTimeout(() => { copyBibtex.textContent = 'Copy'; copyBibtex.classList.remove('copied'); }, 1800);
+});
