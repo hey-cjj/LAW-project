@@ -16,7 +16,7 @@
   <link rel="preload" href="assets/fonts/instrument-serif-regular.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="assets/fonts/dm-sans-regular.ttf" as="font" type="font/ttf" crossorigin>
   <script>document.documentElement.classList.add('js')</script>
-  <link rel="stylesheet" href="styles.css?v=9">
+  <link rel="stylesheet" href="styles.css?v=20261028">
   <script src="script.js?v=9" defer></script>
 </head>
 <body>
@@ -155,7 +155,7 @@
         <p class="lead">LAW pairs a hybrid-expert VLM with a world-action model. The planner specifies the active objective, the WAM proposes action chunks, and the value expert selects actions. Execution feedback keeps the agent on the current subtask or advances the plan.</p>
       </div>
       <figure class="figure-card" data-reveal style="--d:.1s">
-        <button class="image-zoom" type="button" data-image="assets/images/framework.png?v=6" data-caption="The LAW framework: a hybrid-expert VLM, MoTE world-action model, and progress-aware closed-loop agent." aria-label="Enlarge LAW framework diagram" aria-haspopup="dialog"><img src="assets/images/framework.png?v=6" width="3439" height="1882" loading="lazy" alt="LAW architecture. Planner, state, and value adapters share a frozen VLM. MoTE combines private and shared video-action experts. The agent proposes actions, ranks and fuses them, executes a prefix, and monitors subtask completion asynchronously."><span class="zoom-hint">View figure <span aria-hidden="true">↗</span></span></button>
+        <button class="image-zoom" type="button" data-image="assets/images/framework.png?v=20261028" data-caption="The LAW framework: a hybrid-expert VLM, MoTE world-action model, and progress-aware closed-loop agent." aria-label="Enlarge LAW framework diagram" aria-haspopup="dialog"><img src="assets/images/framework.png?v=20261028" width="4988" height="1964" loading="lazy" alt="LAW architecture. Planner, state, and value adapters share a frozen VLM. MoTE combines private and shared video-action experts. The agent proposes actions, ranks and fuses them, executes a prefix, and monitors subtask completion asynchronously."><span class="zoom-hint">View figure <span aria-hidden="true">↗</span></span></button>
       </figure>
 
       <ol class="control-cycle" aria-label="LAW control loop" data-reveal>
@@ -173,7 +173,7 @@
           <p>Planner, state, and value experts share a frozen VLM backbone with separate LoRA adapters. Each specializes in a control function while reusing the same visual-language representations.</p>
         </div>
         <figure class="figure-card" data-reveal style="--d:.1s">
-          <button class="image-zoom" type="button" data-image="assets/images/control-loop.webp?v=6" data-caption="Mixed-frequency coordination of planner, state, value, and action generation" aria-label="Enlarge Mixed-frequency coordination of planner, state, value, and action generation" aria-haspopup="dialog"><img src="assets/images/control-loop.webp?v=6" width="2000" height="561" loading="lazy" alt="Mixed-frequency coordination of planner, state, value, and action generation"><span class="zoom-hint">View figure <span aria-hidden="true">↗</span></span></button>
+          <button class="image-zoom" type="button" data-image="assets/images/control-loop.webp?v=20261028" data-caption="Mixed-frequency coordination of planner, state, value, and action generation" aria-label="Enlarge Mixed-frequency coordination of planner, state, value, and action generation" aria-haspopup="dialog"><img src="assets/images/control-loop.webp?v=20261028" width="2000" height="1093" loading="lazy" alt="Mixed-frequency coordination of planner, state, value, and action generation"><span class="zoom-hint">View figure <span aria-hidden="true">↗</span></span></button>
         </figure>
       </article>
 
@@ -188,15 +188,15 @@
         </figure>
       </article>
 
-      <article class="method-block method-reverse memory-block">
+      <article class="method-block method-wide memory-block">
         <div class="method-copy" data-reveal>
           <span class="method-number">03</span>
           <h3>Dual-stream hierarchical memory</h3>
-          <p>The VLM and WAM retain the same observation timestamps in their own token spaces. Recent observations and subtask-boundary states preserve spatial detail; older history is compressed.</p>
-          <div class="memory-legend"><span><i style="background:#80bde8"></i>Recent</span><span><i style="background:#99c971"></i>Boundary</span><span><i style="background:#87d8ed"></i>Long-term</span></div>
+          <p>The VLM and WAM retain the same observation timestamps in their own token spaces. Short-term memory and boundary memory retain full-resolution visual tokens, while long-term memory stores spatially compressed tokens.</p>
+          <div class="memory-legend"><span><i style="background:#b5ded8"></i>Short-term</span><span><i style="background:#6ebdad"></i>Boundary</span><span><i style="background:#4ca394"></i>Long-term</span></div>
         </div>
         <figure class="figure-card" data-reveal style="--d:.1s">
-          <button class="image-zoom" type="button" data-image="assets/images/memory.png?v=6" data-caption="Hierarchical attention over recent, subtask-boundary, and compressed long-term observations" aria-label="Enlarge Hierarchical attention over recent, subtask-boundary, and compressed long-term observations" aria-haspopup="dialog"><img src="assets/images/memory.png?v=6" width="4308" height="4232" loading="lazy" alt="Hierarchical attention over recent, subtask-boundary, and compressed long-term observations"><span class="zoom-hint">View figure <span aria-hidden="true">↗</span></span></button>
+          <button class="image-zoom" type="button" data-image="assets/images/memory.png?v=20261028" data-caption="Dual-stream hierarchical memory: short-term memory and boundary memory retain full-resolution tokens, while long-term memory stores spatially compressed tokens" aria-label="Enlarge Dual-stream hierarchical memory: short-term memory and boundary memory retain full-resolution tokens, while long-term memory stores spatially compressed tokens" aria-haspopup="dialog"><img src="assets/images/memory.png?v=20261028" width="5376" height="1788" loading="lazy" alt="Dual-stream hierarchical memory: short-term memory and boundary memory retain full-resolution tokens, while long-term memory stores spatially compressed tokens"><span class="zoom-hint">View figure <span aria-hidden="true">↗</span></span></button>
         </figure>
       </article>
 
@@ -218,6 +218,9 @@
             <div class="fused-chunk"><i><b></b></i><span>Fused</span></div>
           </div>
         </div>
+              <figure class="figure-card value-supervision" data-reveal>
+          <button class="image-zoom" type="button" data-image="assets/images/subtask-value.png?v=20261028" data-caption="Subtask-local value supervision retains positive targets for completed subtasks even when a later subtask fails." aria-label="Enlarge subtask-local value supervision" aria-haspopup="dialog"><img src="assets/images/subtask-value.png?v=20261028" width="2720" height="1058" loading="lazy" alt="A block-stacking episode completes the first two subtasks and fails the third. Subtask-local supervision preserves positive targets for the completed stages, whereas episode-level supervision gives zero return."><span class="zoom-hint">View figure <span aria-hidden="true">↗</span></span></button>
+        </figure>
       </article>
     </div>
   </section>

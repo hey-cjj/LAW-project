@@ -146,8 +146,10 @@ h3{color:var(--ink)}
 .method-wide .method-copy .method-number,.method-wide .method-copy h3{grid-column:1;justify-self:start}
 .method-wide .method-copy p{grid-column:2;grid-row:1/span 2;margin:0}
 .method-reverse .method-copy{order:2}
-.memory-block{grid-template-columns:minmax(0,6fr) minmax(0,6fr)}
-.memory-block .figure-card{max-width:520px;width:100%;justify-self:start}
+.memory-block{grid-template-columns:1fr}
+.memory-block .figure-card{width:100%;max-width:none;justify-self:stretch}
+.memory-block .memory-legend{grid-column:1/-1}
+.value-block .value-supervision{grid-column:1/-1}
 .method-number{display:inline-grid;place-items:center;min-width:40px;height:26px;padding:0 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent-ink);font-size:12.5px;font-weight:600;letter-spacing:.06em}
 .method-copy h3{font-family:var(--sans);font-size:26px;line-height:1.25;font-weight:600;letter-spacing:-.015em;margin-top:16px}
 .method-copy p{font-size:16px;line-height:1.8;color:var(--text);margin-top:14px}
@@ -350,7 +352,7 @@ table[data-sort-col="1"] tbody tr:not(.law) td:nth-child(2),table[data-sort-col=
   .method-wide .method-copy{display:block}
   .method-wide .method-copy p{margin-top:14px}
   .method-reverse .method-copy{order:0}
-  .memory-block .figure-card{justify-self:center;max-width:560px}
+  .memory-block .figure-card{justify-self:stretch;max-width:none}
   .real-charts{grid-template-columns:1fr}
   .abstract-layout{grid-template-columns:1fr;gap:0}
   .abstract-layout .section-head{position:static;margin-bottom:28px}
